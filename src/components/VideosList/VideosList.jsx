@@ -1,22 +1,32 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import VideoCard from '../VideoCard/VideoCard';
 import { List } from './styled';
 
 function VideosList({ videos }) {
-  let videosList = videos
-    .filter((video) => video.id.kind !== 'youtube#channel')
-    .map((video) => {
-      let id = video.id.videoId,
-        { title, thumbnails, description } = video.snippet;
-      return (
-        <VideoCard
-          key={id}
-          title={title}
-          thumbnail={thumbnails.medium}
-          description={description}
-        />
-      );
-    });
+  let videosList = videos.map((video) => {
+    let key = video.etag,
+      id = video.id.videoId,
+      title = video.snippet.title,
+      description = video.snippet.description;
+    return (
+      <Link
+        to={{
+          pathname: '/detail',
+          state: {
+            data: {
+              id,
+              title,
+              description,
+            },
+          },
+        }}
+        key={key}
+      >
+        <VideoCard video={video} />
+      </Link>
+    );
+  });
   return <List>{videosList}</List>;
 }
 
