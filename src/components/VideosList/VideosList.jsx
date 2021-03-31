@@ -3,21 +3,23 @@ import { Link } from 'react-router-dom';
 import VideoCard from '../VideoCard/VideoCard';
 import { List } from './styled';
 
-function VideosList({ videos }) {
+function VideosList({ videos, itemPath }) {
   let videosList = videos.map((video) => {
     let key = video.etag,
       id = video.id.videoId,
       title = video.snippet.title,
       description = video.snippet.description;
+    console.log(itemPath);
     return (
       <Link
         to={{
-          pathname: '/detail',
+          pathname: itemPath,
           state: {
             data: {
               id,
               title,
               description,
+              video,
             },
           },
         }}
