@@ -9,8 +9,19 @@ import Header from '../components/Header';
 import { renderInContext } from './utils/utils';
 
 describe('Rendering Header component', function () {
+  let context = {
+    globalState: {
+      authenticated: true,
+      userData: {
+        id: '123',
+        name: 'Wizeline',
+        avatarUrl:
+          'https://media.glassdoor.com/sqll/868055/wizeline-squarelogo-1473976610815.png',
+      },
+    },
+  };
   it('Should render Header', function () {
-    renderInContext(<Header />);
+    renderInContext(<Header />, context);
     expect(screen.getByText(/dark mode/i)).toBeInTheDocument();
     expect(screen.getByPlaceholderText(/browse something/i)).toBeInTheDocument();
     expect(screen.getByRole('banner')).toBeInTheDocument();

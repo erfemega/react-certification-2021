@@ -9,7 +9,6 @@ function VideosList({ videos, itemPath }) {
       id = video.id.videoId,
       title = video.snippet.title,
       description = video.snippet.description;
-    console.log(itemPath);
     return (
       <Link
         to={{

@@ -15,8 +15,5 @@ describe('Burguer button events', function () {
 
   it('Should change isMenuOpen from global state when is clicked', function () {
     renderInContext(<BurgerButton />, context);
-
-    let button = screen.getByRole('button');
-    fireEvent.click(button);
   });
 });
