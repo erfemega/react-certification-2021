@@ -5,10 +5,12 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 320px;
-  margin: 1%;
-  height: 400px;
+  margin: 0.5rem;
+  height: 380px;
   overflow: hidden;
   border-radius: 10px;
+  background-color: ${(props) => props.theme.transparentSmooth};
+  color: ${(props) => props.theme.text};
 `;
 
 const Image = styled.img`
@@ -21,13 +23,15 @@ const Title = styled.h5`
   font-size: 1rem;
   display: block;
   margin: 0.5rem;
+  color: ${(props) => props.theme.secondary};
 `;
 
 const Description = styled.p`
   overflow: hidden;
-  padding: 1rem;
+  padding: 0 1rem;
   text-align: justify;
-  margin-bottom: 1rem;
+  margin: 0;
+  font-size: 0.8rem;
 `;
 
 export { Container, Image, Title, Description };

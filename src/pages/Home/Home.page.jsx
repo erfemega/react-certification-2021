@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import VideosList from '../../components/VideosList/VideosList';
-import mock from './../../mocks/youtube_mock_videos.json';
+import useGlobal from '../../hooks/useGlobal';
 import './Home.styles.css';
+import { Title, Wrapper } from './styled';
 
 function HomePage() {
+  const { globalState } = useGlobal();
   return (
-    <section className="homepage">
-      <h2>Try a Video</h2>
-      <VideosList videos={mock.items} />
-    </section>
+    <Wrapper>
+      <Title>Try a Video</Title>
+      <VideosList videos={globalState.videos} />
+    </Wrapper>
   );
 }
 

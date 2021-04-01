@@ -1,39 +1,20 @@
 import React from 'react';
-import { FaHamburger, FaSearch, FaUser } from 'react-icons/fa';
-import {
-  DarkModeSwitch,
-  HeaderContainer,
-  MenuButton,
-  SearchBar,
-  MenuContainer,
-  ProfileButton,
-  HeaderMargin,
-} from './styled';
+import BurgerButton from '../BurgerButton/BurgerButton';
+import ProfileButton from '../ProfileButton/ProfileButton';
+import SearchBar from '../SearchBar/SearchBar.component';
+import ThemeSelector from '../ThemeSelector/ThemeSelector';
+import { SiteHeader, HeaderWrapper } from './styled';
 
 function Header() {
   return (
-    <HeaderContainer>
-      <HeaderMargin>
-        <MenuContainer>
-          <MenuButton>
-            <FaHamburger />
-          </MenuButton>
-          <SearchBar type="text">
-            <FaSearch />
-            <input type="text" placeholder="Browse something" />
-          </SearchBar>
-        </MenuContainer>
-        <MenuContainer>
-          <DarkModeSwitch>
-            <input type="checkbox" />
-            <p>Dark Mode</p>
-          </DarkModeSwitch>
-          <ProfileButton>
-            <FaUser />
-          </ProfileButton>
-        </MenuContainer>
-      </HeaderMargin>
-    </HeaderContainer>
+    <SiteHeader>
+      <HeaderWrapper>
+        <BurgerButton />
+        <SearchBar />
+        <ThemeSelector />
+        <ProfileButton />
+      </HeaderWrapper>
+    </SiteHeader>
   );
 }
 
