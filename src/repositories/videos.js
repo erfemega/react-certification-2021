@@ -1,8 +1,9 @@
-import youtubeApi from './../api/youtube';
+import { bySnippet, byContentDetail } from './../api/youtube';
 import mock from './../mocks/youtube_mock_videos.json';
 const mocking = false;
 
 const searchByTerm = async (term) => {
+  console.log(term);
   if (mocking) {
     console.warn('MOCKING TRUE');
     return {
@@ -12,7 +13,7 @@ const searchByTerm = async (term) => {
     };
   }
   try {
-    let response = await youtubeApi.get('search', {
+    let response = await bySnippet.get('search', {
       params: {
         q: term,
       },
@@ -38,7 +39,7 @@ const searchRelatedById = async (id) => {
     };
   }
   try {
-    let response = await youtubeApi.get('search', {
+    let response = await bySnippet.get('search', {
       params: {
         relatedToVideoId: id,
         type: 'video',
@@ -55,4 +56,13 @@ const searchRelatedById = async (id) => {
   }
 };
 
-export { searchByTerm, searchRelatedById };
+const getContentDetailById = async (id) => {
+  let response = await byContentDetail.get('videos', {
+    params: {
+      id: id,
+    },
+  });
+  return response;
+};
+
+export { searchByTerm, searchRelatedById, getContentDetailById };

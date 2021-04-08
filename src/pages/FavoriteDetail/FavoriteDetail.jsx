@@ -8,11 +8,11 @@ import useDetail from '../../hooks/useDetail';
 import FavoriteButton from '../../components/FavoriteButton/FavoriteButton';
 import useGlobal from '../../hooks/useGlobal';
 
-function VideoDetail() {
-  const { detailState, updateDetailState } = useDetail();
-  const { globalState } = useGlobal();
-  const location = useLocation();
-  const history = useHistory();
+export default function FavoriteDetail() {
+  const { detailState, updateDetailState } = useDetail(),
+    { globalState } = useGlobal(),
+    location = useLocation(),
+    history = useHistory();
   let id, title, description, video;
 
   useEffect(() => {
@@ -47,10 +47,8 @@ function VideoDetail() {
             )}
           </VideoInfo>
         </PlayerWrapper>
-        <RelatedVideosList videos={detailState.relatedVideos} title="Related videos" />
+        <RelatedVideosList videos={globalState.favorites} title="Your Favorite videos" />
       </VideoDetailWrapper>
     </div>
   );
 }
-
-export default VideoDetail;

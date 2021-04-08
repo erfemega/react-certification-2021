@@ -1,55 +1,23 @@
-// import React from 'react';
-// import { render, screen } from '@testing-library/react';
-// import VideoCard from './VideoCard';
-// import mock from './../../mocks/youtube_mock_videos.json';
-// import GlobalProvider from '../GlobalProvider/Global.provider';
+import React from 'react';
+import { renderInContext } from './utils/utils';
+import VideoCard from './../components/VideoCard/VideoCard';
+import mock from './../mocks/youtube_mock_videos.json';
+import { fireEvent, render, screen } from '@testing-library/react';
 
-// function renderInContext(ui, value) {
-//   return render(<GlobalProvider value={value}>
-//     {ui}
-//   </GlobalProvider>)
-// }
-// let value = {
-//   isMenuOpen: false,
-//   darkModeEnabled: false,
-//   searchTerm: '',
-//   videos: mock.items
-// }
-
-// describe('Header', function () {
-//   const videoMock = {
-//     title: 'Super Title',
-//     description: 'Super Description',
-//     thumbnail: {
-//       url: 'www.test.com',
-//     },
-//   };
-//   it('Should render the header', function () {
-//     renderInContext(
-//       <VideoCard
-//         title={videoMock.title}
-//         description={videoMock.description}
-//         thumbnail={videoMock.thumbnail}
-//       />
-//     );
-//   });
-
-//   it('Should Contains the videoMock text', function () {
-//     renderInContext(
-//       <VideoCard
-//         title={videoMock.title}
-//         description={videoMock.description}
-//         thumbnail={videoMock.thumbnail}
-//       />
-//     );
-//     expect(screen.getByText(videoMock.title)).toBeInTheDocument();
-//     expect(screen.getByText(videoMock.description)).toBeInTheDocument();
-//     expect(screen.getByAltText(videoMock.title)).toBeInTheDocument();
-//   });
-// });
-
-describe('Rendering home component', function () {
-  it('Should be true', function () {
-    expect(true).toBeTruthy;
+describe('Rendering VideoCard component', function () {
+  const globalContext = {
+      globalState: {
+        authenticated: false,
+      },
+    },
+    videoMock = mock.items[1];
+  it('Should render VideoCard correctly', function () {
+    renderInContext(<VideoCard video={videoMock} />, globalContext);
+    const title = screen.getByText(videoMock.snippet.title);
+    const description = screen.getByText(videoMock.snippet.description);
+    const img = screen.getByRole('img');
+    expect(title).toBeInTheDocument();
+    expect(description).toBeInTheDocument();
+    expect(img).toBeInTheDocument();
   });
 });

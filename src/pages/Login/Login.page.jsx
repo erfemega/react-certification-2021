@@ -1,38 +1,57 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router';
+import useGlobal from '../../hooks/useGlobal';
 
-import { useAuth } from '../../providers/Auth';
-import './Login.styles.css';
+import { Form, FormGroup, FormWrapper, Error } from './styled';
 
 function LoginPage() {
-  const { login } = useAuth();
-  const history = useHistory();
+  const { globalState, login } = useGlobal(),
+    history = useHistory(),
+    [username, setUsername] = useState(''),
+    [password, setPassword] = useState('');
 
-  function authenticate(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
-    login();
-    history.push('/secret');
+    await login(username, password);
+    if (globalState.authenticated) {
+      history.push('/');
+    }
   }
 
   return (
-    <section className="login">
+    <FormWrapper>
       <h1>Welcome back!</h1>
-      <form onSubmit={authenticate} className="login-form">
-        <div className="form-group">
+      {globalState.error ? <Error>{globalState.error}</Error> : ''}
+      <Form onSubmit={(event) => handleSubmit(event)} className="login-form">
+        <FormGroup className="form-group">
           <label htmlFor="username">
             <strong>username </strong>
-            <input required type="text" id="username" />
+            <input
+              required
+              type="text"
+              id="username"
+              value={username}
+              onChange={(event) => {
+                setUsername(event.target.value);
+              }}
+            />
           </label>
-        </div>
-        <div className="form-group">
+        </FormGroup>
+        <FormGroup className="form-group">
           <label htmlFor="password">
             <strong>password </strong>
-            <input required type="password" id="password" />
+            <input
+              required
+              type="password"
+              id="password"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+            />
           </label>
-        </div>
+        </FormGroup>
         <button type="submit">login</button>
-      </form>
-    </section>
+      </Form>
+    </FormWrapper>
   );
 }
 

@@ -4,19 +4,20 @@ import { FaSearch } from 'react-icons/fa';
 import useGlobal from '../../hooks/useGlobal';
 
 function SearchBar() {
-  const { globalState, updateFromNewTerm } = useGlobal(),
+  const { updateFromNewTerm } = useGlobal(),
     [term, setTerm] = useState('rock'),
     handleTermChange = (event) => {
       setTerm(event.target.value);
     },
     handleEnter = async (event) => {
       if (event.key === 'Enter') {
+        console.log('running');
         await updateFromNewTerm(term);
       }
     };
 
   useEffect(() => {
-    updateFromNewTerm('monsters');
+    updateFromNewTerm('rock');
   }, []);
 
   return (

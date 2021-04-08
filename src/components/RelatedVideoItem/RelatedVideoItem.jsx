@@ -1,22 +1,10 @@
-import React, { useContext } from 'react';
-import { searchRelatedById } from '../../repositories/videos';
-import DetailContext from '../../context/DetailContext';
+import React from 'react';
 import { ItemWrapper, Image, Title } from './styled';
 import useDetail from '../../hooks/useDetail';
 
-function RelatedVideoItem({ id, description, thumbnail, title }) {
-  // const {detailContextState ,setDetailContextState} = useContext(DetailContext);
-  // const handleRelatedClick = async (event) => {
-  //   let id = detailContextState.video.id.videoId;
-  //   let newRelated = await searchRelatedById(id);
-  //   let newDetailState = {
-  //     video: detailContextState.video,
-  //     relatedVideos: newRelated
-  //   }
-  //   setDetailContextState(newDetailState);
-  // }
+function RelatedVideoItem({ id, description, thumbnail, title, video }) {
   const { updateDetailState } = useDetail(),
-    current = { id, description, title },
+    current = { id, description, title, video },
     handleClick = () => {
       updateDetailState(current);
     };

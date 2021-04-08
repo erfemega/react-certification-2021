@@ -1,7 +1,6 @@
 import React from 'react';
 import { renderInContext } from './utils/utils';
-import VideosList from './../components/VideosList/VideosList';
-import mock from './../mocks/youtube_mock_videos.json';
+import VideoInfo from './../components/VideoInfo/VideoInfo.component';
 
 describe('Rendering SearchBar component', function () {
   const globalContext = {
@@ -10,6 +9,6 @@ describe('Rendering SearchBar component', function () {
     },
   };
   it('Should render SearchBar correctly', function () {
-    renderInContext(<VideosList videos={mock.items} />, globalContext);
+    renderInContext(<VideoInfo />, globalContext);
   });
 });

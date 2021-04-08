@@ -1,10 +1,13 @@
 import React from 'react';
 import { InfoWrapper, Title } from './styled';
 
-function VideoInfo({ description, title }) {
+function VideoInfo({ description, title, children }) {
   return (
     <InfoWrapper>
-      <Title>{title}</Title>
+      <Title>
+        {title}
+        {children}
+      </Title>
       <div>{description}</div>
     </InfoWrapper>
   );
