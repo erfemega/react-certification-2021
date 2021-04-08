@@ -13,11 +13,13 @@ export default function useGlobal() {
 
   const { globalState, dispatch } = context,
     updateFromNewTerm = async (term) => {
+      console.log(term);
       let result = await searchByTerm(term),
         newState = {
           videos: result.data.items,
           term,
         };
+      console.log(result);
       updateSearchTerm(newState);
     },
     toggleMenu = () => dispatch({ type: GLOBAL_ACTIONS.toggleMenu }),
@@ -25,7 +27,6 @@ export default function useGlobal() {
     updateSearchTerm = (searchState) =>
       dispatch({ type: GLOBAL_ACTIONS.setSearch, payload: searchState }),
     closeNavigation = () => dispatch({ type: GLOBAL_ACTIONS.closeMenu }),
-    initialize = () => dispatch({ type: GLOBAL_ACTIONS.initialize }),
     login = async (username, password) => {
       try {
         let userData = await loginApi(username, password);
@@ -72,7 +73,6 @@ export default function useGlobal() {
     };
 
   return {
-    initialize,
     globalState,
     dispatch,
     toggleMenu,
@@ -84,5 +84,6 @@ export default function useGlobal() {
     addToFavorites,
     removeFromFavorites,
     videoIsInFavorites,
+    updateSearchTerm,
   };
 }

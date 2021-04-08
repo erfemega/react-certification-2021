@@ -5,9 +5,6 @@ import { storage } from '../../utils/storage';
 
 function globalReducer(state, action) {
   switch (action.type) {
-    case GLOBAL_ACTIONS.initialize: {
-      return {};
-    }
     case GLOBAL_ACTIONS.setSearch: {
       return {
         ...state,
@@ -61,19 +58,19 @@ function globalReducer(state, action) {
 
 export default function GlobalProvider(props) {
   const [globalState, dispatch] = useReducer(globalReducer, {
-      isMenuOpen: false,
-      darkModeEnabled: false,
-      searchTerm: '',
-      videos: [],
-      authenticated: storage.get('isAuth') ? storage.get('isAuth') : false,
-      userData: storage.get('userData') ? storage.get('userData') : {},
-      error: '',
-      favorites: storage.get('favorites') ? storage.get('favorites') : [],
-    }),
-    context = {
-      globalState,
-      dispatch,
-    };
+    isMenuOpen: false,
+    darkModeEnabled: false,
+    searchTerm: '',
+    videos: [],
+    authenticated: storage.get('isAuth') ? storage.get('isAuth') : false,
+    userData: storage.get('userData') ? storage.get('userData') : {},
+    error: '',
+    favorites: storage.get('favorites') ? storage.get('favorites') : [],
+  });
+  const context = {
+    globalState,
+    dispatch,
+  };
 
   return <GlobalContext.Provider value={context} {...props} />;
 }

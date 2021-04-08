@@ -6,20 +6,20 @@ import { Button } from './styled';
 
 export default function FavoriteButton({ video }) {
   const {
-      globalState,
-      videoIsInFavorites,
-      addToFavorites,
-      removeFromFavorites,
-    } = useGlobal(),
-    { detailState } = useDetail(),
-    [buttonMessage, setButtonMessage] = useState(''),
-    handleClick = () => {
-      if (videoIsInFavorites(video)) {
-        removeFromFavorites(video);
-      } else {
-        addToFavorites(video);
-      }
-    };
+    globalState,
+    videoIsInFavorites,
+    addToFavorites,
+    removeFromFavorites,
+  } = useGlobal();
+  const { detailState } = useDetail();
+  const [buttonMessage, setButtonMessage] = useState('');
+  const handleClick = () => {
+    if (videoIsInFavorites(video)) {
+      removeFromFavorites(video);
+    } else {
+      addToFavorites(video);
+    }
+  };
   useEffect(() => {
     if (videoIsInFavorites(video)) {
       setButtonMessage('Remove from Favorites');
@@ -30,7 +30,7 @@ export default function FavoriteButton({ video }) {
   return (
     <Button onClick={handleClick}>
       <p>
-        {buttonMessage} to Favorites <FaStar />
+        {buttonMessage} <FaStar />
       </p>
     </Button>
   );

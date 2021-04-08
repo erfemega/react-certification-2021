@@ -34,7 +34,7 @@ function App() {
               <Route exact path="/">
                 <HomePage />
               </Route>
-              <Route exact path="/detail">
+              <Route exact path="/detail/:id">
                 <DetailContextProvider>
                   <VideoDetail />
                 </DetailContextProvider>
@@ -49,7 +49,7 @@ function App() {
               />
               <DetailContextProvider>
                 <ProtectedRoute
-                  path="/favoriteDetail"
+                  path="/favoriteDetail/:id"
                   isAuthenticated={globalState.authenticated}
                   Component={FavoriteDetail}
                 />

@@ -12,7 +12,7 @@ function VideosList({ videos, itemPath }) {
     return (
       <Link
         to={{
-          pathname: itemPath,
+          pathname: `${itemPath}/${id}`,
           state: {
             data: {
               id,

@@ -1,6 +1,5 @@
 const AUTH_STORAGE_KEY = 'wa_cert_authenticated';
 const GLOBAL_ACTIONS = {
-  initialize: 'INITIALIZE',
   setSearch: 'SET_SEARCH',
   toggleMenu: 'TOGGLE_MENU',
   closeMenu: 'CLOSE_MENU',

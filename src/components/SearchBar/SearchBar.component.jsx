@@ -11,6 +11,7 @@ function SearchBar() {
     },
     handleEnter = async (event) => {
       if (event.key === 'Enter') {
+        console.log('running');
         await updateFromNewTerm(term);
       }
     };
